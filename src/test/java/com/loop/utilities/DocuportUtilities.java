@@ -20,7 +20,7 @@ public class DocuportUtilities {
 
         switch (loginRole.toLowerCase()) {
             case "client":
-                username.sendKeys(DocuportConstants.USERNAME_ClIENT);
+                username.sendKeys(DocuportConstants.USERNAME_CLIENT);
                 password.sendKeys(DocuportConstants.getPassword());
                 break;
             case "supervisor":

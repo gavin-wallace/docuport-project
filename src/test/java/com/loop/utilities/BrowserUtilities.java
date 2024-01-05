@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 public class BrowserUtilities {
+
     /**
      * Validate if driver switched to expected url and title
      *
@@ -138,8 +139,8 @@ public class BrowserUtilities {
     public static void justWait (int seconds){
         try {
             Thread.sleep(seconds);
-        }catch (InterruptedException e){
-            e.printStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
