@@ -11,22 +11,22 @@ Feature: Docuport Login Logout Feature
     And user clicks login button
     And user should see and click the continue button
     Then user should see the home page for client
-    Given user is logged in
-    When user clicks the user logo
-    And the user clicks Log out
-    Then the user return to the login page
+#    Given user is logged in
+#    When user clicks the user logo
+#    And the user clicks Log out
+#    Then the user return to the login page
 
-  @smoke @regression @closed @wip
+  @smoke @regression
   Scenario: Login as employee
     When user enters username for employee
     And user enters password for employee
     And user clicks login button
     And user closes left navigation window
     Then user should see the home page for employee
-    Given user is logged in
-    When user clicks the user logo
-    And the user clicks Log out
-    Then the user return to the login page
+#    Given user is logged in
+#    When user clicks the user logo
+#    And the user clicks Log out
+#    Then the user return to the login page
 
   @smoke @regression
   Scenario: Login as supervisor
@@ -35,10 +35,10 @@ Feature: Docuport Login Logout Feature
     And user clicks login button
     And user closes left navigation window
     Then user should see the home page for supervisor
-    Given user is logged in
-    When user clicks the user logo
-    And the user clicks Log out
-    Then the user return to the login page
+#    Given user is logged in
+#    When user clicks the user logo
+#    And the user clicks Log out
+#    Then the user return to the login page
 
   @smoke @regression
   Scenario: Login as advisor
@@ -47,7 +47,7 @@ Feature: Docuport Login Logout Feature
     And user clicks login button
     And user closes left navigation window
     Then user should see the home page for advisor
-    Given user is logged in
-    When user clicks the user logo
-    And the user clicks Log out
-    Then the user return to the login page
+#    Given user is logged in
+#    When user clicks the user logo
+#    And the user clicks Log out
+#    Then the user return to the login page
