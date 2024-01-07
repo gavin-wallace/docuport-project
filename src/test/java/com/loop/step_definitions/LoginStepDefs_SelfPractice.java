@@ -39,14 +39,13 @@ public class LoginStepDefs_SelfPractice {
 
     @When("user should see and click the continue button")
     public void use_should_see_and_click_the_continue_button() {
-        BrowserUtilities.waitForVisibility(docuportLoginPageSelfPractice.continueButton,5).click();
+        BrowserUtilities.waitForClickable(docuportLoginPageSelfPractice.continueButton,5).click();
     }
 
     @Then("user should see the home page for client")
     public void user_should_see_the_home_page_for_client() {
         BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
     }
-
 
     //------------------ Applies to employee
 
@@ -87,7 +86,7 @@ public class LoginStepDefs_SelfPractice {
         BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
     }
 
-//---------------- Applies to advisor
+    //---------------- Applies to advisor
 
     @When("user enters username for advisor")
     public void user_enters_username_for_advisor() {
@@ -104,7 +103,7 @@ public class LoginStepDefs_SelfPractice {
         BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
     }
 
-//    //---------------- Logout for all logins
+    //---------------- Logout for all logins
 
     @Given("user is logged in")
     public void user_is_logged_in_as_client() {
