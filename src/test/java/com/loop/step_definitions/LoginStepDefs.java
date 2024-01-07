@@ -1,6 +1,6 @@
 package com.loop.step_definitions;
 
-import com.loop.pages.DocuportLoginPage_SelfPractice;
+import com.loop.pages.DocuportLoginPage;
 import com.loop.utilities.*;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
@@ -8,9 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
-public class LoginStepDefs_SelfPractice {
+public class LoginStepDefs {
 
-    DocuportLoginPage_SelfPractice docuportLoginPageSelfPractice = new DocuportLoginPage_SelfPractice();
+    DocuportLoginPage docuportLoginPageSelfPractice = new DocuportLoginPage();
     Actions actions = new Actions(Driver.getDriver());
 
     //------------------ Applies to all

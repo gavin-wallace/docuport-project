@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DocuportLoginPage_SelfPractice {
+public class DocuportLoginPage {
 
-    public DocuportLoginPage_SelfPractice() {
+    public DocuportLoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
