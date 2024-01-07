@@ -1,11 +1,11 @@
 Feature: Docuport Login Logout Feature
 
   Background:
+    Given user is on Docuport login page
 
 
   @smoke @regression @gavin @userstory @testplan @testexecution @test
   Scenario: Login as client
-    Given user is on Docuport login page
     When user enters username for client
     And user enters password for client
     And user clicks login button
@@ -18,7 +18,6 @@ Feature: Docuport Login Logout Feature
 
   @smoke @regression @closed @wip
   Scenario: Login as employee
-    Given user is on Docuport login page
     When user enters username for employee
     And user enters password for employee
     And user clicks login button
@@ -31,7 +30,6 @@ Feature: Docuport Login Logout Feature
 
   @smoke @regression
   Scenario: Login as supervisor
-    Given user is on Docuport login page
     When user enters username for supervisor
     And user enters password for supervisor
     And user clicks login button
@@ -44,7 +42,6 @@ Feature: Docuport Login Logout Feature
 
   @smoke @regression
   Scenario: Login as advisor
-    Given user is on Docuport login page
     When user enters username for advisor
     And user enters password for advisor
     And user clicks login button

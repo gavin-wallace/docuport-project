@@ -22,7 +22,7 @@ public class LoginStepDefs_SelfPractice {
 
     @When("user clicks login button")
     public void user_clicks_login_button() {
-        BrowserUtilities.waitForVisibility(docuportLoginPageSelfPractice.loginButton,5).click();
+        BrowserUtilities.waitForVisibility(docuportLoginPageSelfPractice.loginButton,DocuportConstants.small).click();
     }
 
     //------------------ Applies to client
@@ -39,7 +39,7 @@ public class LoginStepDefs_SelfPractice {
 
     @When("user should see and click the continue button")
     public void use_should_see_and_click_the_continue_button() {
-        BrowserUtilities.waitForClickable(docuportLoginPageSelfPractice.continueButton,5).click();
+        BrowserUtilities.waitForClickable(docuportLoginPageSelfPractice.continueButton,DocuportConstants.small).click();
     }
 
     @Then("user should see the home page for client")
@@ -112,17 +112,17 @@ public class LoginStepDefs_SelfPractice {
 
     @When("user clicks the user logo")
     public void user_clicks_the_user_logo() {
-        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")),5).click();
+        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")),DocuportConstants.small).click();
     }
 
     @When("the user clicks Log out")
     public void the_user_clicks() {
-        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//span[.='Log out']/../..")),5).sendKeys(Keys.ENTER);
+        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//span[.='Log out']/../..")),DocuportConstants.small).sendKeys(Keys.ENTER);
     }
 
     @Then("the user return to the login page")
     public void the_user_return_to_the_login_page() {
-        BrowserUtilities.waitForVisibility(docuportLoginPageSelfPractice.username,5);
+        BrowserUtilities.waitForVisibility(docuportLoginPageSelfPractice.username,DocuportConstants.small);
         Assert.assertEquals(DocuportConstants.LOGIN_PAGE_URL, Driver.getDriver().getCurrentUrl());
     }
 
