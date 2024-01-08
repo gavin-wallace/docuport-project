@@ -39,6 +39,7 @@ public class LoginStepDefs {
 
     @When("user should see and click the continue button")
     public void use_should_see_and_click_the_continue_button() {
+        BrowserUtilities.justWait(1500);
         BrowserUtilities.waitForClickable(docuportLoginPageSelfPractice.continueButton,DocuportConstants.small).click();
     }
 

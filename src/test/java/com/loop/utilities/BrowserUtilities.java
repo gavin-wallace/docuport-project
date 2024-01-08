@@ -133,12 +133,12 @@ public class BrowserUtilities {
     }
     /**
      * performs a pause
-     * @param seconds
+     * @param milliSeconds
      * @author nadir
      */
-    public static void justWait (int seconds){
+    public static void justWait (int milliSeconds){
         try {
-            Thread.sleep(seconds);
+            Thread.sleep(milliSeconds);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
