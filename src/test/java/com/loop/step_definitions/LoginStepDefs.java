@@ -10,7 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public class LoginStepDefs {
 
-    DocuportLoginPage docuportLoginPageSelfPractice = new DocuportLoginPage();
+    DocuportLoginPage docuportLoginPage = new DocuportLoginPage();
     Actions actions = new Actions(Driver.getDriver());
 
     //------------------ Applies to all
@@ -22,25 +22,25 @@ public class LoginStepDefs {
 
     @When("user clicks login button")
     public void user_clicks_login_button() {
-        BrowserUtilities.waitForVisibility(docuportLoginPageSelfPractice.loginButton,DocuportConstants.small).click();
+        BrowserUtilities.waitForVisibility(docuportLoginPage.loginButton,DocuportConstants.small).click();
     }
 
     //------------------ Applies to client
 
     @When("user enters username for client")
     public void user_enters_username_for_client() {
-        docuportLoginPageSelfPractice.username.sendKeys(DocuportConstants.USERNAME_CLIENT);
+        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_CLIENT);
     }
 
     @When("user enters password for client")
     public void user_enters_password_for_client() {
-        docuportLoginPageSelfPractice.password.sendKeys(DocuportConstants.getPassword());
+        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
     }
 
     @When("user should see and click the continue button")
     public void use_should_see_and_click_the_continue_button() {
         BrowserUtilities.justWait(1500);
-        BrowserUtilities.waitForClickable(docuportLoginPageSelfPractice.continueButton,DocuportConstants.small).click();
+        BrowserUtilities.waitForClickable(docuportLoginPage.continueButton,DocuportConstants.small).click();
     }
 
     @Then("user should see the home page for client")
@@ -52,12 +52,12 @@ public class LoginStepDefs {
 
     @When("user enters username for employee")
     public void user_enters_username_for_employee() {
-        docuportLoginPageSelfPractice.username.sendKeys(DocuportConstants.USERNAME_EMPLOYEE);
+        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_EMPLOYEE);
     }
 
     @When("user enters password for employee")
     public void user_enters_password_for_employee() {
-        docuportLoginPageSelfPractice.password.sendKeys(DocuportConstants.getPassword());
+        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
     }
 
     @When("user closes left navigation window")
@@ -74,12 +74,12 @@ public class LoginStepDefs {
 
     @When("user enters username for supervisor")
     public void user_enters_username_for_supervisor() {
-        docuportLoginPageSelfPractice.username.sendKeys(DocuportConstants.USERNAME_SUPERVISOR);
+        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_SUPERVISOR);
     }
 
     @When("user enters password for supervisor")
     public void user_enters_password_for_supervisor() {
-        docuportLoginPageSelfPractice.password.sendKeys(DocuportConstants.getPassword());
+        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
     }
 
     @Then("user should see the home page for supervisor")
@@ -91,12 +91,12 @@ public class LoginStepDefs {
 
     @When("user enters username for advisor")
     public void user_enters_username_for_advisor() {
-        docuportLoginPageSelfPractice.username.sendKeys(DocuportConstants.USERNAME_ADVISOR);
+        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_ADVISOR);
     }
 
     @When("user enters password for advisor")
     public void user_enters_password_for_advisor() {
-        docuportLoginPageSelfPractice.password.sendKeys(DocuportConstants.getPassword());
+        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
     }
 
     @Then("user should see the home page for advisor")
@@ -123,7 +123,7 @@ public class LoginStepDefs {
 
     @Then("the user return to the login page")
     public void the_user_return_to_the_login_page() {
-        BrowserUtilities.waitForVisibility(docuportLoginPageSelfPractice.username,DocuportConstants.small);
+        BrowserUtilities.waitForVisibility(docuportLoginPage.username,DocuportConstants.small);
         Assert.assertEquals(DocuportConstants.LOGIN_PAGE_URL, Driver.getDriver().getCurrentUrl());
     }
 
