@@ -1,10 +1,9 @@
 package com.loop.runner;
-import io.cucumber.java.sl.In;
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
-import java.util.Arrays;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -13,7 +12,7 @@ import java.util.Arrays;
         features = "src/test/resources/features",
         glue = "com/loop/step_definitions",
         dryRun = false,
-        tags = "",
+        tags = "@wikipedia",
         monochrome = true
         //publish = true
 )

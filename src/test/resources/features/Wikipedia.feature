@@ -5,7 +5,7 @@ Feature: Wikipedia Search Functionality Verification
 
   @wikipedia
   Scenario: Title Verification
-    Then the user searches the following items and validates the text in the "page title"
+    Then the user searches the following items, clicks "search" button, and validates the text in the "page title"
       | Steve Jobs        |
       | George Washington |
       | Sam Smith         |
@@ -13,7 +13,7 @@ Feature: Wikipedia Search Functionality Verification
 
   @wikipedia
   Scenario: Header Verification
-    Then the user searches the following items and validates the text in the "main header"
+    Then the user searches the following items, clicks "search" button, and validates the text in the "main header"
       | Steve Jobs        |
       | George Washington |
       | Sam Smith         |
@@ -21,7 +21,7 @@ Feature: Wikipedia Search Functionality Verification
 
   @wikipedia
   Scenario: Image Header Verification
-    Then the user searches the following items and validates the text in the "image header"
+    Then the user searches the following items, clicks "search" button, and validates the text in the "image header"
       | Steve Jobs        |
       | George Washington |
       | Sam Smith         |

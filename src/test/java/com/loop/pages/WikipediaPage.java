@@ -14,6 +14,9 @@ public class WikipediaPage {
     @FindBy(id = "searchInput")
     public WebElement searchBox;
 
+    @FindBy(xpath = "//i[.='Search']")
+    public WebElement searchButton;
+
     @FindBy(xpath = "//h1[@id='firstHeading']//span")
     public WebElement mainHeaderText;
 

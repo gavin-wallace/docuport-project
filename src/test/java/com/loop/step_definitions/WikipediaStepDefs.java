@@ -19,12 +19,17 @@ public class WikipediaStepDefs {
         Driver.getDriver().get(ConfigurationReader.getProperty("wikipedia.url"));
     }
 
-    @Then("the user searches the following items and validates the text in the {string}")
-    public void the_user_searches_the_following_items_and_validates_the_text_in_the(String string, List<String> list) {
+    @Then("the user searches the following items, clicks {string} button, and validates the text in the {string}")
+    public void the_user_searches_the_following_items_clicks_button_and_validates_the_text_in_the(String button, String string, List<String> list) {
         list.forEach(each ->
         {
             wikipediaPage.searchBox.clear();
-            wikipediaPage.searchBox.sendKeys(each + Keys.ENTER);
+            wikipediaPage.searchBox.sendKeys(each);
+
+            switch (button) {
+                case "search":
+                    wikipediaPage.searchButton.click();
+            }
 
             switch (string) {
                 case "page title":
@@ -40,6 +45,8 @@ public class WikipediaStepDefs {
             takeScreenshot();
             Driver.getDriver().navigate().back();
         });
+
+
     }
 }
 
