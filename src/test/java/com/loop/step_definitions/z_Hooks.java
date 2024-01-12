@@ -6,27 +6,12 @@ import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-public class Hooks {
-
-    @Before()
-    public void setUpDb(Scenario scenario) {
-        Driver.getDriver();
-        BrowserUtilities.myScenario = scenario;
-    }
-
-
-    @After
-    public void tearDownDb(Scenario scenario){
-        if(scenario.isFailed()){
-            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot,"image/png", scenario.getName());
-        }
-        Driver.closeDriver();
-    }
+public class z_Hooks {
 
     @Before
-    public void setUp() {
+    public void setUp(Scenario scenario) {
         Driver.getDriver();
+        BrowserUtilities.myScenario = scenario;
     }
 
 

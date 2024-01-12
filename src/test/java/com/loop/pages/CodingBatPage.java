@@ -46,7 +46,6 @@ public class CodingBatPage {
     @FindBy(xpath = "//h3[.='Python Help']")
     private static WebElement pythonHelp;
 
-
     public static WebElement getIdOrEmail() {
         return idOrEmail;
     }

@@ -19,7 +19,6 @@ public class CodingBatStepDefs {
         getDriver().get("https://codingbat.com/java");
     }
 
-
     //---   Scenario: Coding Bat Login
 
     @When("the user enters their id or email")
@@ -40,6 +39,17 @@ public class CodingBatStepDefs {
     @Then("the user is logged in")
     public void the_user_is_logged_in() {
         assertTrue(getLogout().isDisplayed());
+    }
+
+    //---   Scenario: Coding Bat Logout
+
+    @When("the user clicks logout")
+    public void the_user_clicks_log_out() {
+        getLogout().click();
+    }
+    @Then("the user is logged out")
+    public void the_user_is_logged_out() {
+        assertTrue(getLogin().isDisplayed());
     }
 
     // Python Tab

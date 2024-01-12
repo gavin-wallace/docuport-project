@@ -23,7 +23,4 @@ public class DocuportLoginPage {
     @FindBy(xpath = "//button[@type='submit']//span")
     public WebElement continueButton;
 
-
-//    @FindBy (xpath = "")
-//    public WebElement element;
 }

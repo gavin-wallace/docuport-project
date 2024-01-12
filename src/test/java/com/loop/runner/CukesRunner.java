@@ -13,7 +13,7 @@ import java.util.Arrays;
         features = "src/test/resources/features",
         glue = "com/loop/step_definitions",
         dryRun = false,
-        tags = "  @wikipedia",
+        tags = "",
         monochrome = true
         //publish = true
 )
