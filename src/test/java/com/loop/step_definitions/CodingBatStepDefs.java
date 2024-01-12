@@ -19,48 +19,8 @@ public class CodingBatStepDefs {
         getDriver().get("https://codingbat.com/java");
     }
 
-    @Then("assert Java is selected")
-    public void assert_java_is_selected() {
-        assertEquals("selected", getJavaTabLi().getAttribute("id"));
-    }
 
     //---   Scenario: Coding Bat Login
-
-    @When("the user clicks each Java problem group and each task")
-    public void the_user_clicks_each_task() {
-        clickEachProblemAndTask();
-    }
-
-    @Then("the user prints each Java task link and webpage title")
-    public void the_user_prints_and_validates_each_task() {
-        assertTrue(getDriver().getTitle().contains("CodingBat Java"));
-    }
-
-    //--   Scenario: Validate and print Java Help links
-
-    @Then("assert Java Help is displayed")
-    public void assert_java_help_is_visible() {
-        assertTrue(getJavaHelp().isDisplayed());
-    }
-
-    @Then("print the Java Help links")
-    public void print_the_java_help_links() {
-        printHelpLinks(getJavaHelpElementsList());
-    }
-
-    //-- Validate and print Python Help links
-
-    @Then("assert Python Help is displayed")
-    public void assert_python_help_is_selected() {
-        assertTrue(getPythonHelp().isDisplayed());
-    }
-
-    @Then("print the Python Help links")
-    public void print_the_python_help_links() {
-        printHelpLinks(getPythonHelpElementsList());
-    }
-
-    //---   Scenario: Print all Java task links and webpage title
 
     @When("the user enters their id or email")
     public void the_user_enters_their_id_email() {
@@ -82,26 +42,67 @@ public class CodingBatStepDefs {
         assertTrue(getLogout().isDisplayed());
     }
 
-    //--   Scenario: Print all Python task links and webpage title
+    // Python Tab
 
     @Given("the user selects the Python tab")
     public void the_user_selects_the_python_tab() {
         getPythonTab().click();
     }
 
-    @Then("assert Python tab is selected")
-    public void assert_python_is_selected() {
-        assertEquals("selected", getPythonTabLi().getAttribute("id"));
+    // Parametrized
+
+    @Then("assert {string} is displayed")
+    public void assert_is_displayed(String string) {
+        switch (string) {
+            case "Python Help":
+                assertTrue(getPythonHelp().isDisplayed());
+                break;
+            case "Java Help":
+                assertTrue(getJavaHelp().isDisplayed());
+                break;
+        }
     }
 
-    @When("the user clicks each Python problem group and each task")
-    public void the_user_clicks_each_python_problem_group_and_each_task() {
+    @Then("print the {string} Help links")
+    public void print_the_help_links(String string) {
+        switch (string) {
+            case "Python":
+                printHelpLinks(getPythonHelpElementsList());
+                break;
+            case "Java":
+                printHelpLinks(getJavaHelpElementsList());
+                break;
+        }
+    }
+
+    @Then("assert {string} tab is selected")
+    public void assert_tab_is_selected(String string) {
+        switch (string) {
+            case "Python":
+                assertEquals("selected", getPythonTabLi().getAttribute("id"));
+                break;
+            case "Java":
+                assertEquals("selected", getJavaTabLi().getAttribute("id"));
+                break;
+        }
+    }
+
+
+    @When("the user clicks each {string} problem group and each task")
+    public void the_user_clicks_each_problem_group_and_each_task(String string) {
         clickEachProblemAndTask();
     }
 
-    @Then("the user prints each Python task link and webpage title")
-    public void the_user_prints_each_python_task_link_and_url_title() {
-        assertTrue(getDriver().getTitle().contains("CodingBat Python"));
+    @Then("the user prints each {string} task link and webpage title")
+    public void the_user_prints_each_task_link_and_webpage_title(String string) {
+        switch (string) {
+            case "Python":
+                assertTrue(getDriver().getTitle().contains("CodingBat Python"));
+                break;
+            case "Java":
+                assertTrue(getDriver().getTitle().contains("CodingBat Java"));
+                break;
+        }
     }
 
 }

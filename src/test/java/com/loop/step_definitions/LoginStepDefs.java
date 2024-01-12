@@ -20,22 +20,35 @@ public class LoginStepDefs {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
     }
 
+    @When("user enters username for {string}")
+    public void userEntersUsernameFor(String string) throws Exception {
+        String temp = switch (string) {
+            case "client" -> DocuportConstants.USERNAME_CLIENT;
+            case "employee" -> DocuportConstants.USERNAME_EMPLOYEE;
+            case "supervisor" -> DocuportConstants.USERNAME_SUPERVISOR;
+            case "advisor" -> DocuportConstants.USERNAME_ADVISOR;
+            default -> throw new Exception("Invalid Role");
+        };
+        docuportLoginPage.username.sendKeys(temp);
+    }
+
+    @When("user enters password for {string}")
+    public void user_enters_password_for(String string) {
+        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
+    }
+
     @When("user clicks login button")
     public void user_clicks_login_button() {
         BrowserUtilities.waitForVisibility(docuportLoginPage.loginButton,DocuportConstants.small).click();
     }
 
+    @Then("user should see the home page for {string}")
+    public void user_should_see_the_home_page_for(String string) {
+        BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
+        BrowserUtilities.takeScreenshot();
+    }
+
     //------------------ Applies to client
-
-    @When("user enters username for client")
-    public void user_enters_username_for_client() {
-        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_CLIENT);
-    }
-
-    @When("user enters password for client")
-    public void user_enters_password_for_client() {
-        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
-    }
 
     @When("user should see and click the continue button")
     public void use_should_see_and_click_the_continue_button() {
@@ -43,66 +56,18 @@ public class LoginStepDefs {
         BrowserUtilities.waitForClickable(docuportLoginPage.continueButton,DocuportConstants.small).click();
     }
 
-    @Then("user should see the home page for client")
-    public void user_should_see_the_home_page_for_client() {
-        BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
-    }
-
     //------------------ Applies to employee
-
-    @When("user enters username for employee")
-    public void user_enters_username_for_employee() {
-        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_EMPLOYEE);
-    }
-
-    @When("user enters password for employee")
-    public void user_enters_password_for_employee() {
-        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
-    }
 
     @When("user closes left navigation window")
     public void user_closes_left_navigation_window() {
         Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")).sendKeys(Keys.ENTER, Keys.ENTER);
     }
 
-    @Then("user should see the home page for employee")
-    public void user_should_see_the_home_page_for_employee() {
-        BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
-    }
-
     //---------------- Applies to supervisor
 
-    @When("user enters username for supervisor")
-    public void user_enters_username_for_supervisor() {
-        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_SUPERVISOR);
-    }
-
-    @When("user enters password for supervisor")
-    public void user_enters_password_for_supervisor() {
-        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
-    }
-
-    @Then("user should see the home page for supervisor")
-    public void user_should_see_the_home_page_for_supervisor() {
-        BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
-    }
 
     //---------------- Applies to advisor
 
-    @When("user enters username for advisor")
-    public void user_enters_username_for_advisor() {
-        docuportLoginPage.username.sendKeys(DocuportConstants.USERNAME_ADVISOR);
-    }
-
-    @When("user enters password for advisor")
-    public void user_enters_password_for_advisor() {
-        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
-    }
-
-    @Then("user should see the home page for advisor")
-    public void user_should_see_the_home_page_for_advisor() {
-        BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
-    }
 
     //---------------- Logout for all logins
 
@@ -125,6 +90,6 @@ public class LoginStepDefs {
     public void the_user_return_to_the_login_page() {
         BrowserUtilities.waitForVisibility(docuportLoginPage.username,DocuportConstants.small);
         Assert.assertEquals(DocuportConstants.LOGIN_PAGE_URL, Driver.getDriver().getCurrentUrl());
+        BrowserUtilities.takeScreenshot();
     }
-
 }
