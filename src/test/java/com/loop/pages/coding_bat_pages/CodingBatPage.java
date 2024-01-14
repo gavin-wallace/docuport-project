@@ -1,4 +1,4 @@
-package com.loop.pages;
+package com.loop.pages.coding_bat_pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

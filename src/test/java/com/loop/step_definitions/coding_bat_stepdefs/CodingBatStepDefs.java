@@ -1,9 +1,9 @@
-package com.loop.step_definitions;
+package com.loop.step_definitions.coding_bat_stepdefs;
 
-import com.loop.pages.CodingBatPage;
+import com.loop.pages.coding_bat_pages.CodingBatPage;
 import io.cucumber.java.en.*;
 
-import static com.loop.pages.CodingBatPage.*;
+import static com.loop.pages.coding_bat_pages.CodingBatPage.*;
 import static com.loop.utilities.ConfigurationReader.*;
 import static com.loop.utilities.Driver.getDriver;
 import static org.junit.Assert.*;

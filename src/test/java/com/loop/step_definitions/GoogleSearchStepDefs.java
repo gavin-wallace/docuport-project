@@ -66,4 +66,18 @@ public class GoogleSearchStepDefs {
 //        }
     }
 
+    //--- Google Search Outline Feature
+
+    @When("user searches for the {string}")
+    public void user_searches_for_the(String country) {
+        googleSearchPage.searchBox.sendKeys( "What is the capital city of "+country );
+        googleSearchPage.searchButton.click();
+        BrowserUtilities.takeScreenshot();
+    }
+    @Then("the user should see the {string} in the result")
+    public void the_user_should_see_the_in_the_result(String capital) {
+
+        Assert.assertEquals(googleSearchPage.capital.getText().toLowerCase(),capital.toLowerCase());
+    }
+
 }

@@ -148,12 +148,12 @@ public class BrowserUtilities {
     /**
      * performs a pause
      *
-     * @param milliSeconds
+     * @param seconds
      * @author nadir
      */
-    public static void justWait(int milliSeconds) {
+    public static void justWait(int seconds) {
         try {
-            Thread.sleep(milliSeconds);
+            Thread.sleep(seconds*1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -176,9 +176,9 @@ public class BrowserUtilities {
     public static void takeScreenshot() {
 
         try {
-            myScenario.log("Current url is: " + Driver.getDriver().getCurrentUrl());
+            //myScenario.log("Current url is: " + Driver.getDriver().getCurrentUrl());
             final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-            myScenario.attach(screenshot, "image/png", myScenario.getName());
+            //myScenario.attach(screenshot, "image/png", myScenario.getName());
         }catch (WebDriverException wbd){
             wbd.getMessage();
         } catch (ClassCastException cce){

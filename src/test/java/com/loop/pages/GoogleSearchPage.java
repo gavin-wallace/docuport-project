@@ -19,4 +19,7 @@ public class GoogleSearchPage {
 
     @FindBy (xpath = "//input[@id='gbqfbb']/preceding-sibling::input")
     public WebElement searchButton;
+
+    @FindBy (xpath = "//h2[@data-dtype]//span")
+    public WebElement capital;
 }
