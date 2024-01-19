@@ -1,6 +1,7 @@
-package com.loop.step_definitions;
+package com.loop.step_definitions.docuport_stepdefs;
 
-import com.loop.pages.DocuportLoginPage;
+import com.loop.pages.docuport_pages.BasePage;
+import com.loop.pages.docuport_pages.LoginPage;
 import com.loop.utilities.*;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
@@ -8,12 +9,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.List;
 import java.util.Map;
 
 public class LoginStepDefs {
 
-    DocuportLoginPage docuportLoginPage = new DocuportLoginPage();
+    BasePage basePage = new BasePage();
     Actions actions = new Actions(Driver.getDriver());
 
     //------------------ Applies to all
@@ -31,21 +31,21 @@ public class LoginStepDefs {
             case "advisor" -> DocuportConstants.USERNAME_ADVISOR;
             default -> throw new Exception("Invalid Role");
         };
-        docuportLoginPage.username.sendKeys(temp);
+        basePage.username.sendKeys(temp);
     }
     @When("user enters password for {string}")
     public void user_enters_password_for(String string) {
-        docuportLoginPage.password.sendKeys(DocuportConstants.getPassword());
+        basePage.password.sendKeys(DocuportConstants.getPassword());
     }
     @When("user clicks login button")
     public void user_clicks_login_button() {
-        BrowserUtilities.waitForVisibility(docuportLoginPage.loginButton,DocuportConstants.small).click();
+        BrowserUtilities.waitForVisibility(basePage.loginButton,DocuportConstants.small).click();
     }
     @Then("user should see the home page for {string}")
     public void user_should_see_the_home_page_for(String string) {
         if (string.equals("client")){
             BrowserUtilities.justWait(3);
-            BrowserUtilities.waitForClickable(docuportLoginPage.continueButton,DocuportConstants.large).click();
+            BrowserUtilities.waitForClickable(basePage.continueButton,DocuportConstants.large).click();
         } else {
             Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")).sendKeys(Keys.ENTER, Keys.ENTER);
         }
@@ -63,7 +63,7 @@ public class LoginStepDefs {
     }
     @Then("the user return to the login page")
     public void the_user_return_to_the_login_page() {
-        BrowserUtilities.waitForVisibility(docuportLoginPage.username,DocuportConstants.small);
+        BrowserUtilities.waitForVisibility(basePage.username,DocuportConstants.small);
         Assert.assertEquals(DocuportConstants.LOGIN_PAGE_URL, Driver.getDriver().getCurrentUrl());
         BrowserUtilities.takeScreenshot();
     }
@@ -76,7 +76,7 @@ public class LoginStepDefs {
 //            System.out.println("key = " + key);
 //            System.out.println("value = " + value);
 //        }
-        docuportLoginPage.loginDocuport(credentials.get("username"),credentials.get("password"));
+        basePage.loginDocuport2(credentials.get("username"),credentials.get("password"));
     }
     @Then("user should see the home page")
     public void user_should_see_the_home_page_for() {
