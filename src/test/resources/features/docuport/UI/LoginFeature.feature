@@ -3,7 +3,7 @@ Feature: Docuport Login Logout Feature
   Background:
     Given user is on Docuport login page
 
-  @smoke @regression
+  @smoke @regression @logintoall
   Scenario Outline: Login and out
     When user enters username for "<userType>"
     And user enters password for "<userType>"
@@ -19,15 +19,17 @@ Feature: Docuport Login Logout Feature
       | advisor    |
       | employee   |
 
-#  @smoke @regression @gww @B2G1-184 @B2G1-136 @B2G1-137 @B2G1-185
-#  Scenario: Login and out as client
-#    When user enters username for "client"
-#    And user enters password for "client"
-#    And user clicks login button
-#    Then user should see the home page for "client"
-#    When user clicks the user logo
-#    And the user clicks Log out
-#    Then the user return to the login page
+  @smoke @regression @gww @B2G1-184 @B2G1-136 @B2G1-137 @B2G1-185
+  Scenario: Login and out as client
+    When user enters username for "client"
+    And user enters password for "client"
+    And user clicks login button
+    Then user should see the home page for "client"
+    When user clicks the user logo
+    And the user clicks Log out
+    Then the user return to the login page
+
+
 #
 #  @smoke @regression
 #  Scenario: Login and out as employee

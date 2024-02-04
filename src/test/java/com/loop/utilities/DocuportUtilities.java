@@ -13,7 +13,7 @@ public class DocuportUtilities {
      * @param loginRole
      */
     public static void login(WebDriver driver, String loginRole) {
-        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("docuport.ui.url"));
         WebElement username = Driver.getDriver().findElement(By.xpath("//input[@type='text']"));
         WebElement password = Driver.getDriver().findElement(By.xpath("//input[@type='password']"));
         WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[@type='submit']"));

@@ -7,9 +7,12 @@ import com.loop.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -26,10 +29,10 @@ public class LoginPage {
     @FindBy(xpath = "//span[.=' Log in ']/..")
     public WebElement loginButton;
 
-    public void loginDocuport(String usertype){
+    public void loginDocuport(String usertype) {
 
         //get test env
-        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("docuport.ui.url"));
 
         //wait for username to be visible
         BrowserUtilities.waitForVisibility(username, DocuportConstants.small);
@@ -43,7 +46,13 @@ public class LoginPage {
             case "employee" -> DocuportConstants.USERNAME_EMPLOYEE;
             case "supervisor" -> DocuportConstants.USERNAME_SUPERVISOR;
             case "advisor" -> DocuportConstants.USERNAME_ADVISOR;
-            default -> throw new IllegalStateException("Unexpected value: " + usertype);
+            default -> {
+                try {
+                    throw new Exception("Invalid Role");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
         };
 
         //Sends username keys
@@ -54,44 +63,28 @@ public class LoginPage {
         password.sendKeys(DocuportConstants.getPassword());
 
         //wait for login button to be clickable and click
-        BrowserUtilities.waitForClickable(loginButton,DocuportConstants.small).click();
+        BrowserUtilities.waitForClickable(loginButton, DocuportConstants.small).click();
 
         //if client, click continue
         BasePage basePage = new BasePage();
-        if (usertype.equals("client")){
+        if (usertype.equals("client")) {
             BrowserUtilities.justWait(3);
-            BrowserUtilities.waitForClickable(basePage.continueButton,DocuportConstants.large).click();
+            BrowserUtilities.waitForClickable(basePage.continueButton, DocuportConstants.large).click();
         } else {
             //closes left navigation items so landing page is visible
             Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")).sendKeys(Keys.ENTER, Keys.ENTER);
         }
+        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    //logout from all userTypes
-    public void logout(){
-        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")),DocuportConstants.small).click();
-        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//span[.='Log out']/../..")),DocuportConstants.small).sendKeys(Keys.ENTER);
-        BrowserUtilities.waitForVisibility(username,DocuportConstants.small);
-    }
-
-
-
-
-
-//used on previous task/stepdef
-    public void loginDocuport2(String username, String password){
+    public void loginDocuport(String username, String password) {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
         BrowserUtilities.waitForVisibility(this.username, DocuportConstants.small);
-        this.username.click();
+        this.username.clear();
         this.username.sendKeys(username);
         this.password.clear();
         this.password.sendKeys(password);
-        BrowserUtilities.waitForClickable(loginButton,DocuportConstants.small);
+        BrowserUtilities.waitForClickable(loginButton, DocuportConstants.small);
         loginButton.click();
-        BasePage basePage = new BasePage();
-        if(BrowserUtilities.waitForVisibility(basePage.continueButton,5).isDisplayed()){
-            basePage.continueButton.click();
-        }
     }
-
 }

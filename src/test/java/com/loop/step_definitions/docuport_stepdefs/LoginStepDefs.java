@@ -1,7 +1,6 @@
 package com.loop.step_definitions.docuport_stepdefs;
 
 import com.loop.pages.docuport_pages.BasePage;
-import com.loop.pages.docuport_pages.LoginPage;
 import com.loop.utilities.*;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
@@ -19,9 +18,10 @@ public class LoginStepDefs {
     //------------------ Applies to all
     @Given("user is on Docuport login page")
     public void user_is_on_docuport_login_page() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("docuport.ui.url"));
         BrowserUtilities.takeScreenshot();
     }
+
     @When("user enters username for {string}")
     public void userEntersUsernameFor(String string) throws Exception {
         String temp = switch (string) {
@@ -33,54 +33,80 @@ public class LoginStepDefs {
         };
         basePage.username.sendKeys(temp);
     }
+
     @When("user enters password for {string}")
     public void user_enters_password_for(String string) {
         basePage.password.sendKeys(DocuportConstants.getPassword());
     }
+
     @When("user clicks login button")
     public void user_clicks_login_button() {
-        BrowserUtilities.waitForVisibility(basePage.loginButton,DocuportConstants.small).click();
+        BrowserUtilities.waitForVisibility(basePage.loginButton, DocuportConstants.small).click();
     }
+
     @Then("user should see the home page for {string}")
     public void user_should_see_the_home_page_for(String string) {
-        if (string.equals("client")){
+        if (string.equals("client")) {
             BrowserUtilities.justWait(3);
-            BrowserUtilities.waitForClickable(basePage.continueButton,DocuportConstants.large).click();
+            BrowserUtilities.waitForClickable(basePage.continueButton, DocuportConstants.large).click();
         } else {
             Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")).sendKeys(Keys.ENTER, Keys.ENTER);
         }
         BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
         BrowserUtilities.takeScreenshot();
     }
+
     //---------------- Logout for all logins
     @When("user clicks the user logo")
     public void user_clicks_the_user_logo() {
-        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")),DocuportConstants.small).click();
+        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//button[@class='pa-0 v-btn v-btn--rounded v-btn--text theme--light v-size--default gray--text']")), DocuportConstants.small).click();
     }
+
     @When("the user clicks Log out")
     public void the_user_clicks() {
-        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//span[.='Log out']/../..")),DocuportConstants.small).sendKeys(Keys.ENTER);
+        BrowserUtilities.waitForVisibility(Driver.getDriver().findElement(By.xpath("//span[.='Log out']/../..")), DocuportConstants.small).sendKeys(Keys.ENTER);
     }
+
     @Then("the user return to the login page")
     public void the_user_return_to_the_login_page() {
-        BrowserUtilities.waitForVisibility(basePage.username,DocuportConstants.small);
+        BrowserUtilities.waitForVisibility(basePage.username, DocuportConstants.small);
         Assert.assertEquals(DocuportConstants.LOGIN_PAGE_URL, Driver.getDriver().getCurrentUrl());
         BrowserUtilities.takeScreenshot();
     }
+
     //--
     @When("user enter credentials")
-    public void user_enter_credentials(Map<String,String> credentials) {
+    public void user_enter_credentials(Map<String, String> credentials) {
 //        for (Map.Entry<String,String> entry : credentials.entrySet()){
 //            String key = entry.getKey();
 //            String value = entry.getValue();
 //            System.out.println("key = " + key);
 //            System.out.println("value = " + value);
 //        }
-        basePage.loginDocuport2(credentials.get("username"),credentials.get("password"));
+        basePage.loginDocuport(credentials.get("username"), credentials.get("password"));
     }
+
     @Then("user should see the home page")
     public void user_should_see_the_home_page_for() {
         BrowserUtilities.validateTitle(DocuportConstants.HOME_PAGE_TITLE);
         BrowserUtilities.takeScreenshot();
+    }
+
+    //--
+
+    @Given("user logs into {string}")
+    public void user_logs_into(String userType) {
+        basePage.loginDocuport(userType);
+    }
+
+    @Then("logout")
+    public void logout_from() {
+        basePage.logout();
+    }
+
+    @Then("login as newly created user")
+    public void login_as_newly_created_user() {
+        basePage.loginDocuport(ClientStepDefs.list.get(2), ClientStepDefs.list.get(4));
+        basePage.closeLeftNavigationPanel();
     }
 }
